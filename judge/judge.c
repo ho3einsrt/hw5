@@ -1,20 +1,20 @@
 #include "judge.h"
 String *LogJudge(String *log,int index,int errorType){
     String * indexStr=IntToString(index);
-    log=AppendString_(log,"Test case ");
+    log=AppendStringChars(log,"Test case ");
     log=AppendString(log,indexStr);
     switch (errorType){
         case 0:
-            log=AppendString_(log,": Correct answer.\n");
+            log=AppendStringChars(log,": Correct answer.\n");
             break;
         case 1:
-            log=AppendString_(log,": Wrong answer!!\n");
+            log=AppendStringChars(log,": Wrong answer!!\n");
             break;
         case 2:
-            log=AppendString_(log,": <runtime error>\n");
+            log=AppendStringChars(log,": <runtime error>\n");
             break;
         default:
-            log=AppendString_(log,": {time Limit exceeded}\n");
+            log=AppendStringChars(log,": {time Limit exceeded}\n");
             break;
     }
     FreeString(indexStr);
@@ -28,8 +28,8 @@ int ValidTestCases(String *base){
     int numberOfInputs=0,numberOfOutputs=0;
 
     String *inputPath=InitString(base->data),*outputPath=InitString(base->data);
-    inputPath=AppendString_(inputPath,"/in");
-    outputPath=AppendString_(outputPath,"/out");
+    inputPath=AppendStringChars(inputPath,"/in");
+    outputPath=AppendStringChars(outputPath,"/out");
     if(!DirectoryExists(inputPath) || !DirectoryExists(outputPath))
     {
         FreeString(inputPath);
