@@ -39,11 +39,11 @@ int GenerateTestCasesFromFile(String *path){
             else if(fileData->data[i]=='\\')
                 status=2;
             else
-                basePath=AppendString__(basePath,fileData->data[i]);
+                basePath=AppendStringChar(basePath,fileData->data[i]);
         }
         else if(status==2){
             if(fileData->data[i]=='\"' || fileData->data[i]=='\\')
-                basePath=AppendString__(basePath,fileData->data[i]);
+                basePath=AppendStringChar(basePath,fileData->data[i]);
             else
                 return -1;
             status--;
@@ -60,11 +60,11 @@ int GenerateTestCasesFromFile(String *path){
             else if(fileData->data[i]=='\\')
                 status=5;
             else
-                programPath=AppendString__(programPath,fileData->data[i]);
+                programPath=AppendStringChar(programPath,fileData->data[i]);
         }
         else if(status==5){
             if(fileData->data[i]=='\"' || fileData->data[i]=='\\')
-                programPath=AppendString__(programPath,fileData->data[i]);
+                programPath=AppendStringChar(programPath,fileData->data[i]);
             else
                 return -1;
             status--;
@@ -88,12 +88,12 @@ int GenerateTestCasesFromFile(String *path){
             else if(fileData->data[i]=='\\')
                 status=8;
             else{
-                data=AppendString__(data,fileData->data[i]);
+                data=AppendStringChar(data,fileData->data[i]);
             }
         }
         else if(status==8){
             if(fileData->data[i]=='\"' || fileData->data[i]=='\\')
-                data=AppendString__(data,fileData->data[i]);
+                data=AppendStringChar(data,fileData->data[i]);
             else
                 return -1;
             status--;
