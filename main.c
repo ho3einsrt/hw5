@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include<string.h>
+#include <string.h>
 #include <stdlib.h>
 #include "newString/newString.c"
 #include "commands/commands.c"
