@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include<string.h>
 #include <stdlib.h>
-#include "newStrings/newStrings.c"
+#include "newStrings/newString.c"
 #include "commands/commands.c"
 #include "watch/watch.c"
 #include "generator/generator.c"
