@@ -31,30 +31,30 @@ String* Terminal(String * command){
     String *result=NewString(0);
     char tmp[24]={'\0'};
     while (fgets(tmp, sizeof(tmp), terminal) !=NULL)
-        result=AppendString_(result,tmp);
+        result=AppendStringChars(result,tmp);
     result=SubStr(result,0,result->len-2,1);
     return result;
 
 }
 String *GenerateOutputPath(String *base,int index){
     String *path=InitString(base->data),*tmpIndex=IntToString(index);
-    path=AppendString_(path,_FILE_SEPARATOR);
-    path=AppendString_(path,"out");
-    path=AppendString_(path,_FILE_SEPARATOR);
-    path=AppendString_(path,"output");
+    path=AppendStringChars(path,_FILE_SEPARATOR);
+    path=AppendStringChars(path,"out");
+    path=AppendStringChars(path,_FILE_SEPARATOR);
+    path=AppendStringChars(path,"output");
     path=AppendString(path,tmpIndex);
-    path=AppendString_(path,".txt");
+    path=AppendStringChars(path,".txt");
     FreeString(tmpIndex);
     return path;
 }
 String *GenerateInputPath(String *base,int index){
     String *path=InitString(base->data),*tmpIndex=IntToString(index);
-    path=AppendString_(path,_FILE_SEPARATOR);
-    path=AppendString_(path,"in");
-    path=AppendString_(path,_FILE_SEPARATOR);
-    path=AppendString_(path,"input");
+    path=AppendStringChars(path,_FILE_SEPARATOR);
+    path=AppendStringChars(path,"in");
+    path=AppendStringChars(path,_FILE_SEPARATOR);
+    path=AppendStringChars(path,"input");
     path=AppendString(path,tmpIndex);
-    path=AppendString_(path,".txt");
+    path=AppendStringChars(path,".txt");
     FreeString(tmpIndex);
     return path;
 }
@@ -75,7 +75,7 @@ int CreateDir(String * path){
     String *str=NewString(0);
     str=SetString_(str,"mkdir \"");
     str=AppendString(str,path);
-    str=AppendString_(str,"\" || echo false");
+    str=AppendStringChars(str,"\" || echo false");
     String* boolean=Terminal(str);
     int status=EmptyString(boolean);
     FreeString(str);
@@ -89,7 +89,7 @@ int RemoveDir(String *path)
     String *str=NewString(0);
     str=SetString_(str,_DELETE_FILE);
     str=AppendString(str,path);
-    str=AppendString_(str,"\" || echo false");
+    str=AppendStringChars(str,"\" || echo false");
     String* boolean=Terminal(str);
     int status=EmptyString(boolean);
     FreeString(boolean);
@@ -111,9 +111,9 @@ int RemoveFile(String *path){
         return 0;
     String *str=NewString(0);
     str=SetString_(str,_DELETE_FILE);
-    str=AppendString_(str," \"");
+    str=AppendStringChars(str," \"");
     str=AppendString(str,path);
-    str=AppendString_(str,"\" || echo false");
+    str=AppendStringChars(str,"\" || echo false");
     String* boolean=Terminal(str);
     int status=EmptyString(boolean);
     FreeString(boolean);
@@ -182,11 +182,11 @@ int RunProgram(String *path,String *inputPath,String *outputPath){
         str=InitString("\"");
 
     str=AppendString(str,path);
-    str=AppendString_(str,"\"<\"");
+    str=AppendStringChars(str,"\"<\"");
     str=AppendString(str,inputPath);
-    str=AppendString_(str,"\" >\"");
+    str=AppendStringChars(str,"\" >\"");
     str=AppendString(str,outputPath);
-    str=AppendString_(str, "\"|| echo false");
+    str=AppendStringChars(str, "\"|| echo false");
     String* boolean=Terminal(str);
     int status=EmptyString(boolean);
     FreeString(boolean);
@@ -198,9 +198,9 @@ int CompileProgram(String *path,String *to){//-1 file not exists;0 compile error
         return -1;
     String *str=InitString("gcc \"");
     str=AppendString(str, path);
-    str=AppendString_(str, "\" -o \"");
+    str=AppendStringChars(str, "\" -o \"");
     str=AppendString(str, to);
-    str=AppendString_(str, "\"|| echo false");
+    str=AppendStringChars(str, "\"|| echo false");
     String* boolean=Terminal(str);
     int status=EmptyString(boolean);
     FreeString(boolean);
